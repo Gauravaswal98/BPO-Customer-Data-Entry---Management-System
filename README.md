@@ -1,67 +1,62 @@
-BPO Customer Data Entry & Management System
+# BPO Customer Data Entry & Management System
 
-A frontend-based data entry and management application built for a BPO customer support process in the paint industry. This system helps customer care executives efficiently manage customer records such as leads, complaints, and inquiries through a structured and user-friendly interface.
+A frontend-based data entry and management application developed for a **BPO customer support process** in the **paint industry**. This system enables customer care executives to efficiently manage customer-related data such as leads, complaints, and inquiries in a structured and user-friendly way.
 
-🚀 Features
+---
 
-Dual-role foldable login system for Admin and Advisors
+## 🚀 Features
 
-Secure, role-based UI access
+- Dual-role **foldable login interface** (Admin & Advisor)
+- Secure role-based access
+- Customer data entry with dynamic input fields
+- Lead, complaint, and inquiry management
+- User management module
+- Built-in notepad for quick call notes
+- Upload and view calling scripts
+- Upload and access product information sheets
+- Responsive and process-oriented UI
+- Reduces manual errors and improves operational efficiency
 
-Customer data entry with dynamic form fields
+---
 
-Lead, complaint, and inquiry management
+## 👥 User Roles
 
-User management module (Admin)
+### Advisor (Customer Care Executive)
+- Handle customer interactions
+- Enter and update customer records
+- View calling scripts and product information
+- Use notepad during live calls
 
-Built-in notepad for quick call notes
+### Admin
+- Manage users
+- Control data structure
+- Manage system resources
 
-Upload and view calling scripts
+---
 
-Upload and access product information sheets
+## 🧠 Use Case
 
-Responsive and process-oriented design
+This application is designed for real-time BPO environments where advisors need quick access to customer data, scripts, and product details to provide accurate and consistent information during customer calls.
 
-Reduces manual errors and improves efficiency
+---
 
-👥 User Roles
-Advisor (Customer Care Executive)
+## 🛠️ Technologies Used
 
-Handle customer interactions
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
 
-Enter and manage customer data
+---
 
-View calling scripts and product details
+## 📌 Project Type
 
-Use notepad during live calls
+Frontend Project  
+Domain: BPO / Customer Support (Paint Industry)
 
-Admin
+---
 
-Manage users
+## 📄 License
 
-Control data structure
+This project is created for learning, demonstration, and portfolio purposes.
 
-Monitor system resources
-
-🧠 Use Case
-
-Designed for real-time BPO operations where advisors need quick access to customer data, scripts, and product information to provide accurate and consistent support.
-
-🛠️ Technologies Used
-
-HTML5
-
-CSS3
-
-JavaScript
-
-Bootstrap
-
-📌 Project Type
-
-Frontend Project
-(BPO / Customer Support Domain)
-
-📄 License
-
-This project is for educational and demonstration purposes.
