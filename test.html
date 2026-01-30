@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>School Exhibition</title>
+
+    <style>
+        /* ===============================
+   CSS VARIABLES
+================================ */
+        :root {
+            --primary: #1a73e8;
+            --dark: #222;
+            --light: #fff;
+            --gray: #f5f5f5;
+            --transition: 0.5s ease;
+        }
+
+        /* ===============================
+   RESET & BASE
+================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+            font: inherit;
+        }
+
+        /* ===============================
+   ACCESSIBILITY
+================================ */
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            left: 10px;
+        }
+
+        /* ===============================
+   HERO SLIDER
+================================ */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            height: 70vh;
+        }
+
+        .hero__track {
+            display: flex;
+            height: 100%;
+            transition: transform var(--transition);
+        }
+
+        .hero__slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 3rem);
+        }
+
+        .hero__controls {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .hero__btn {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+
+        /* ===============================
+   LOGO SLING
+================================ */
+        .logos {
+            background: var(--gray);
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .logos__row {
+            display: flex;
+            gap: 2rem;
+            animation: scroll-left 20s linear infinite;
+        }
+
+        .logos__row--reverse {
+            animation: scroll-right 20s linear infinite;
+        }
+
+        .logos__row:hover,
+        .logos__row:focus-within {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            from {
+                transform: translateX(-50%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .logos__item {
+            width: 120px;
+            height: 60px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===============================
+   CHOOSE SCHOOL
+================================ */
+        .school {
+            padding: 3rem 1rem;
+        }
+
+        .school__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .school__card {
+            background: var(--gray);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* ===============================
+   MOBILE SLIDER
+================================ */
+        @media (max-width: 768px) {
+            .school__grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            .school__card {
+                min-width: 80%;
+                scroll-snap-align: center;
+            }
+        }
+
+        /* ===============================
+   EXHIBITION SLIDER
+================================ */
+        .exhibition {
+            background: #fafafa;
+            padding: 3rem 1rem;
+        }
+
+        .exhibition__track {
+            display: flex;
+            transition: transform var(--transition);
+        }
+
+        .exhibition__card {
+            min-width: 100%;
+            background: #fff;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* ===============================
+   REDUCED MOTION
+================================ */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header>
+        <h1 style="text-align:center; padding:1rem;">School Exhibition</h1>
+    </header>
+
+    <main id="main">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" role="region" aria-roledescription="carousel" aria-label="Hero Slider">
+            <div class="hero__track" id="heroTrack">
+                <div class="hero__slide">Welcome</div>
+                <div class="hero__slide">Explore Schools</div>
+                <div class="hero__slide">Join Exhibition</div>
+            </div>
+
+            <div class="hero__controls">
+                <button class="hero__btn" id="prevHero" aria-label="Previous slide">◀</button>
+                <button class="hero__btn" id="nextHero" aria-label="Next slide">▶</button>
+            </div>
+        </section>
+
+        <!-- ================= LOGOS ================= -->
+        <section class="logos" aria-label="Participating Schools">
+            <div class="logos__row">
+                <div class="logos__item">Logo</div>
+                <div class="logos__item">Logo</div>
+                <div class="logos__item">Logo</div>
+                <div class="logos__item">Logo</div>
+            </div>
+            <div class="logos__row logos__row--reverse">
+                <div class="logos__item">Logo</div>
+                <div class="logos__item">Logo</div>
+                <div class="logos__item">Logo</div>
+                <div class="logos__item">Logo</div>
+            </div>
+        </section>
+
+        <!-- ================= SCHOOL ================= -->
+        <section class="school">
+            <h2>Choose the School</h2>
+            <div class="school__grid">
+                <article class="school__card">School A</article>
+                <article class="school__card">School B</article>
+                <article class="school__card">School C</article>
+                <article class="school__card">School D</article>
+            </div>
+        </section>
+
+        <!-- ================= EXHIBITION ================= -->
+        <section class="exhibition" role="region" aria-roledescription="carousel" aria-label="Exhibition Highlights">
+            <div class="exhibition__track" id="exTrack">
+                <div class="exhibition__card">Exhibition 1</div>
+                <div class="exhibition__card">Exhibition 2</div>
+                <div class="exhibition__card">Exhibition 3</div>
+            </div>
+
+            <div style="text-align:center; margin-top:1rem;">
+                <button id="prevEx">Prev</button>
+                <button id="nextEx">Next</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align:center; padding:1rem;">
+        © 2026 School Exhibition
+    </footer>
+
+    <script>
+        /* ================= HERO SLIDER ================= */
+        let heroIndex = 0;
+        const heroTrack = document.getElementById("heroTrack");
+        const heroSlides = heroTrack.children;
+
+        function updateHero() {
+            heroTrack.style.transform = `translateX(-${heroIndex * 100}%)`;
+        }
+
+        document.getElementById("nextHero").onclick = () => {
+            heroIndex = (heroIndex + 1) % heroSlides.length;
+            updateHero();
+        };
+
+        document.getElementById("prevHero").onclick = () => {
+            heroIndex = (heroIndex - 1 + heroSlides.length) % heroSlides.length;
+            updateHero();
+        };
+
+        setInterval(() => {
+            heroIndex = (heroIndex + 1) % heroSlides.length;
+            updateHero();
+        }, 5000);
+
+        /* ================= EXHIBITION SLIDER ================= */
+        let exIndex = 0;
+        const exTrack = document.getElementById("exTrack");
+        const exSlides = exTrack.children;
+
+        function updateEx() {
+            exTrack.style.transform = `translateX(-${exIndex * 100}%)`;
+        }
+
+        document.getElementById("nextEx").onclick = () => {
+            exIndex = (exIndex + 1) % exSlides.length;
+            updateEx();
+        };
+
+        document.getElementById("prevEx").onclick = () => {
+            exIndex = (exIndex - 1 + exSlides.length) % exSlides.length;
+            updateEx();
+        };
+    </script>
+
+</body>
+
+</html>

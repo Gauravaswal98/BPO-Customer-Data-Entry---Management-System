@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Add Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="Coderthemes" name="author">
+    <link rel="shortcut icon" href="assets/images/fav.png">
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+
+</head>
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+
+    <div class="wrapper">
+
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+        <div class="content-page" style="background-color: #e7e5e5;">
+            <div class="content">
+
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.html">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false" style="height:1px">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+
+                                <a href="Login-page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+                <div class="container-fluid" style="background-color:none; height:600px; margin-bottom:100px;">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title"><img src="assets/images/to-do-list.gif" alt="img"
+                                        style="border-radius:5px; height: 40px;"> Enter Future Lead Calling
+                                    Details Here</h4>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="container" style=" background-color: none; height:600px;">
+
+                        <form action="LeadPerform" method="post" style="min-height:200px; background-color:none;">
+                            <div class="form first">
+                                <div class="details personal">
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Date</label>
+                                            <input type="date" placeholder="Enter date" value="<%= formattedDate%>"
+                                                name="date" required>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Time</label>
+                                            <input type="time" placeholder="Enter time" value="<%= formattedTime%>"
+                                                name="time" required>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Customer Name</label>
+                                            <input type="text" placeholder="Enter Customer Name" name="customer_name">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Mobile Number</label>
+                                            <input type="text" placeholder="Enter Customer Mobile Number"
+                                                name="mobile_number" pattern="\d{10}"
+                                                title="Please enter a valid 10-digit mobile number" id="mobileNumber">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Alternate Number</label>
+                                            <input type="text" placeholder="Enter Customer Alternate Number"
+                                                name="alternate_number" pattern="\d{10}"
+                                                title="Please enter a valid 10-digit alternate number"
+                                                id="alternateNumber">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Pincode</label>
+                                            <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                required data-toggle="input-mask" data-mask-format="000000">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Lead ID</label>
+                                            <input type="text" placeholder="Enter Lead ID" name="lead_id">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Painting Start Date</label>
+                                            <input type="date" placeholder="Enter date" name="painting_start_date">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Requested Call Back Date</label>
+                                            <input type="date" placeholder="Enter date" name="requested_call_back_date">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Reason</label>
+                                            <select name="reason">
+                                                <option disabled selected>Select Here</option>
+                                                <option>Civil Work</option>
+                                                <option>Femily Function</option>
+                                                <option>Others</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Attempt</label>
+                                            <input type="date" placeholder="Enter Attempt" name="attempt"
+                                                value="<%= formattedDate%>" required>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Status</label>
+                                            <select name="status">
+                                                <option disabled selected>Select Here</option>
+                                                <option>NCT</option>
+                                                <option>Call Back</option>
+                                                <option>Not Interested</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Remarks</label>
+                                            <textarea placeholder="Enter Remarks..." name="remarks"></textarea>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Advisor Name</label>
+                                            <input type="text" placeholder="Enter agent name" value="" name="agent_name"
+                                                readonly>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Aspect ID</label>
+                                            <input type="text" placeholder="Enter Aspect ID" name="aspect_id" value=""
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="nextBtn" id="id" name="id" value="admin">
+                                    <span class="btnText"><img src="assets/images/shield.gif" alt="img"
+                                            style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer" style="background-color:#fff">
+
+            </footer>
+        </div>
+    </div>
+    <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/include.js"></script>
+    <script src="assets/js/vendor/handlebars.min.js"></script>
+    <script src="assets/js/vendor/typeahead.bundle.min.js"></script>
+    <script src="assets/js/pages/demo.typehead.js"></script>
+    <script src="assets/js/pages/demo.timepicker.js"></script>
+
+</body>
+
+</html>

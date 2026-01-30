@@ -1,0 +1,1436 @@
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@ include file="Validation.jsp" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Add Data</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+        <meta content="Coderthemes" name="author">
+
+        <link rel="shortcut icon" href="assets/images/fav.png">
+
+
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+        <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+        
+    </head>
+
+    <%        String aspect_id = (String) session.getAttribute("aspect_id");
+
+        LocalDateTime now = LocalDateTime.now();
+
+        // Define the date format: yyyy-MM-dd
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Get current time
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedTime = currentTime.format(timeFormatter);
+
+        // Format the date and time separately
+        String formattedDate = now.format(dateFormatter);
+
+        String userType = (String) session.getAttribute("user_type");
+        String username = (String) session.getAttribute("username");
+        String category = request.getParameter("value");
+
+        boolean isAdmin = "Admin".equals(userType);
+
+        boolean isAgent = "Agent".equals(userType);
+    %>
+
+    <body class="loading"
+          data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+
+        <div class="wrapper">
+
+            <!-- Sidebar menu code -->
+            <jsp:include page="Headers.jsp" />
+            <!-- Sidebar menu code end -->
+            <div class="content-page" style="background-color: #e7e5e5;">
+                <div class="content">
+                    <!-- Topbar Start -->
+                    <div class="navbar-custom">
+                        <ul class="list-unstyled topbar-menu float-end mb-0">
+                            <li class="dropdown notification-list d-lg-none">
+                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                   role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="dripicons-search noti-icon"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                    <form class="p-3">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                               aria-label="Recipient's username">
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="notification-list" style="margin-top: 15px;">
+                                <a class="nav-link end-bar-toggle" href="notepad.jsp">
+                                    <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                         style=" border-radius:5px; height: 40px;">
+                                    Add Notes
+                                </a>
+                            </li>
+                            <li class="dropdown notification-list">
+                                <a style="height:1px;" class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <span class="account-user-avatar"> 
+                                        <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                    </span>
+                                    <span>
+                                        <span class="account-user-name"><%= username%></span>
+
+
+                                        <%    if ("Admin".equals(userType)) {
+                                        %>
+                                        <span class="account-position">Admin</span>
+                                        <% } %>
+
+                                        <%    if ("Agent".equals(userType)) { %>
+                                        <span class="account-position">Advisor</span>
+                                        <% } %>
+
+                                        <%    if ("Others".equals(userType)) { %>
+                                        <span class="account-position">Others</span>
+                                        <% }%>
+                                        
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                                    <!-- item-->
+                                    <a href="ChangePassword.jsp" class="dropdown-item notify-item">
+                                        <img src="assets/images/password.gif" alt="img"
+                                             style="border-radius:5px; height: 30px;">
+                                        <span>Change Password</span>
+                                    </a>
+                                    <!-- item-->
+                                    <a href="javascript:redirectToServlet()" class="dropdown-item notify-item">
+                                        <img src="assets/images/log-out.gif" alt="img"
+                                             style="border-radius:5px; height: 30px;">
+                                        <span>Logout</span>
+                                    </a>
+
+                                    <script>
+                                        
+                                        function redirectToServlet() {
+                                            // Replace "/your-servlet-url" with the actual URL of your servlet
+                                            window.location.href = "Logout";
+                                        }
+
+                                    </script>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="button-menu-mobile open-left">
+    <img src="assets/images/menu.gif" alt="img"
+    style="border-radius:5px; height:40px;">
+</button>
+                    </div>
+                    <!-- end Topbar -->
+                    <!-- container Start-->
+
+                    <% if ("Masterstroke".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Masterstroke Card Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" placeholder="Enter Date" value="<%= formattedDate%>" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" placeholder="Enter Time" name="time" value="<%= formattedTime%>" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>BP Number</label>
+                                                <input type="text" placeholder="Enter BP Number" name="bp_number" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Dealer Details</label>
+                                                <textarea placeholder="Enter Dealer Details Here..." name="dealer_details"></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>TSO Details</label>
+                                                <textarea placeholder="Enter TSO Details Here..." name="tso_details"></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" value="<%= username%>" name="agent_name" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="team" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="masterstroke">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="Masterstroke" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("Product".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:600px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Product Availability Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:600px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time"  required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Email ID</label>
+                                                <input type="mail" placeholder="Enter Email ID" name="email_id" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>City</label>
+                                                <input type="text" placeholder="Enter City" name="city" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Product Code</label>
+                                                <input type="text" placeholder="Enter Product Code" name="product_code">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Quantity</label>
+                                                <input type="text" placeholder="Enter Quantity" name="quantity" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="productav">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="Product" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("crossbusiness".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Cross Business Lead Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" placeholder="Enter Date"  value="<%= formattedDate%>" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>City</label>
+                                                <input type="text" placeholder="Enter City" name="city" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>State</label>
+                                                <select name="state" >
+                                                    <option>Select State</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                    <option value="Daman and Diu">Daman and Diu</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Lakshadweep">Lakshadweep</option>
+                                                    <option value="Puducherry">Puducherry</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Odisha">Odisha</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Query For</label>
+                                                <select name="query_for" required>
+                                                    <option>Select Here</option>
+                                                    <option value="Sleek kitchen">Sleek kitchen</option>
+                                                    <option value="Bath Fittings">Bath Fittings</option>
+                                                    <option value="Automotive Paints">Automotive Paints</option>
+                                                    <option value="Industrial Paints">Industrial Paints</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Type of Query</label>
+                                                <select name="type_of_query" required>
+                                                    <option>Select Here</option>
+                                                    <option value="Requirement">Requirement</option>
+                                                    <option value="Complaint">Complaint</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID"  value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="crossbusiness">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="crossbusiness" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("bulkrequest".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:600px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Bulk Request Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:600px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date"  value="<%= formattedDate%>" placeholder="Enter Date" name="date"  required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>City</label>
+                                                <input type="text" placeholder="Enter City" name="city" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>State</label>
+                                                <select name="state" >
+                                                    <option>Select State</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                    <option value="Daman and Diu">Daman and Diu</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Lakshadweep">Lakshadweep</option>
+                                                    <option value="Puducherry">Puducherry</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Odisha">Odisha</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Address</label>
+                                                <textarea placeholder="Enter Address Here..." name="address"
+                                                          ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Email ID</label>
+                                                <input type="mail" placeholder="Enter Email ID" name="email_id" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"
+                                                          ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="bulk_request">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="bulkrequest" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("otherconcern".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Other Concern Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Email ID</label>
+                                                <input type="mail" placeholder="Enter Email ID" name="email_id" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>State</label>
+                                                <select name="state" >
+                                                    <option>Select State</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                    <option value="Daman and Diu">Daman and Diu</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Lakshadweep">Lakshadweep</option>
+                                                    <option value="Puducherry">Puducherry</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Odisha">Odisha</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>City</label>
+                                                <input type="text" placeholder="Enter City" name="city" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"
+                                                          ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="otherconcrn">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="otherconcern" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("charges".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Charges For Dealership Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"
+                                                          required></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Associate Name</label>
+                                                <input type="text" placeholder="Enter Associate Name" name="associate_name"
+                                                       >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Associate Number</label>
+                                                <input type="text" placeholder="Enter Associate Mobile Number"
+                                                       name="associate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="charges">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="charges" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div> 
+                    <% } else if ("pisrequest".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter PIS Request Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input pattern="\d{6}" title="Please enter a valid 6-digit pincode" type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Email ID</label>
+                                                <input type="email" placeholder="Enter Email ID" name="email_id" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Product Name</label>
+                                                <input type="text" placeholder="Enter Product Name" name="product_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="pisrequest">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="pisrequest" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("unabletoconnect".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Unable To Connect Tollfree Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number" data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input pattern="\d{6}" title="Please enter a valid 6-digit pincode" type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>BP Number / Dealer code</label>
+                                                <input type="text" placeholder="Enter BP Number / Dealer code"
+                                                       name="bp_number_dealer_code" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Type of Tollfree</label>
+                                                <select name="type_of_tollfree" required>
+                                                    <option>Select Here</option>
+                                                    <option value="Masterstroke Card">Masterstroke Card</option>
+                                                    <option value="Awaaz Toll Free">Awaaz Toll Free</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Remarks</label>
+                                                <textarea placeholder="Enter Remarks Here..." name="remarks"
+                                                          ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="unabletoconnect">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="unabletoconnect" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("supermaproduct".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Suprema Product Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input pattern="\d{6}" title="Please enter a valid 6-digit pincode" type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Email</label>
+                                                <input type="text" placeholder="Email ID" name="email_id" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Type of Call</label>
+                                                <select name="type_of_call" required>
+                                                    <option>Select Here</option>
+                                                    <option value="Complaint">Complaint</option>
+                                                    <option value="Concern">Concern</option>
+                                                    <option value="Information">Information</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"
+                                                          ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="supermaproduct">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="supermaproduct" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("saneed".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:600px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Details For SA Need Customer Details On Mail</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:600px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input pattern="\d{6}" title="Please enter a valid 6-digit pincode" type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Lead/ Complaint/ Case Number</label>
+                                                <input type="text" placeholder="Enter Lead/ Complaint/ Case Number"
+                                                       name="lead_complaint_case_number" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Address</label>
+                                                <textarea placeholder="Enter Address Here..." name="address"
+                                                          required></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Description</label>
+                                                <textarea placeholder="Enter Description Here..." name="description"
+                                                          ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Sales Associate Name</label>
+                                                <input type="text" placeholder="Enter Sales Associate Name"
+                                                       name="sales_associate_name" >
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label>Sales Associate Number</label>
+                                                <input type="text" placeholder="Enter Sales Associate Number"
+                                                       name="sales_associate_number"    data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Sales Associate Email</label>
+                                                <input type="email" placeholder="Enter Sales Associate Email"
+                                                       name="sales_associate_email" >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="saneed">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="saneed" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div> 
+                    <% } else if ("badcall".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:300px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Details For Bad Call Number To Be Blocked</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:300px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       >
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="badcall">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="badcall" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else if ("wantstowork".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:600px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Details Here For Wants to Work With Asian Paints</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:600px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Alternate Number"
+                                                       name="alternate_number"  data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input pattern="\d{6}" title="Please enter a valid 6-digit pincode" type="text" placeholder="Enter Customer Pincode" name="pincode"
+                                                       required data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>City</label>
+                                                <input type="text" placeholder="Enter City" name="city" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>State</label>
+                                                <select name="state" required>
+                                                    <option>Select State</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                    <option value="Daman and Diu">Daman and Diu</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Lakshadweep">Lakshadweep</option>
+                                                    <option value="Puducherry">Puducherry</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Odisha">Odisha</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Address</label>
+                                                <textarea placeholder="Enter Address Here..." name="address"
+                                                          required></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Email ID</label>
+                                                <input type="email" placeholder="Enter Email ID" name="email_id">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Relocation City Name</label>
+                                                <input type="text" placeholder="Enter City Name" name="relocation_city_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="wantstowork">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id ="form" name="form" value="wantstowork" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>  
+                    <% } else if ("weatherseal".equalsIgnoreCase(category)) {%>
+                    <div class="container-fluid" style="background-color:none; height:400px; margin-bottom:100px;">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Weather Seal Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="container" style=" background-color: none; height:400px;">
+                            <form action="OthersPerform" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" value="<%= formattedDate%>" placeholder="Enter Date" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" value="<%= formattedTime%>" placeholder="Enter Time" name="time" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Query Received</label>
+                                                <input type="date" value="" placeholder="Enter Date" name="querydate" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Remarks</label>
+                                                <textarea placeholder="Enter Remarks Here..." name="description" ></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text"  placeholder="Enter Agent Name" name="agent_name" value="<%= username%>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" value="<%= aspect_id%>" name="aspect_id" required>
+                                            </div>
+                                            <input type="hidden" name="value" value="weatherseal">
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id ="form" name="form" value="weatherseal" >
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div> <!-- container End -->
+                    </div>
+                    <% } else { %>
+                    <p>Category: Unknown</p>
+                    <p>Description: The category is unknown or not specified.</p>
+                    <% }%>
+                    <!--container Fluid End -->
+                    <!-- end of MS card form -->
+                    <!--container Fluid End -->
+                    <!-- End of Product availibility form -->
+                    <!--container Fluid End -->
+                    <!-- End of cross business lead form -->
+                    <!--container Fluid End -->
+                    <!-- End of Bulk request form -->
+                    <!--container Fluid End -->
+                    <!-- End of other concern form -->
+                    <!--container Fluid End -->
+                    <!-- End of charges for dealership form -->
+                    <!--container Fluid End -->
+                    <!-- End of pis request form -->
+                    <!--container Fluid End -->
+                    <!-- End of unable to connect tollfree form -->
+                    <!--container Fluid End -->
+                    <!-- End of Suprema product form -->
+                    <!--container Fluid End -->
+                    <!-- End of SA need customer details on mail form -->
+                    <!--container Fluid End -->
+                    <!-- End of bad call number to be blocked form -->
+                    <!--container Fluid End -->
+                    <!-- End of wants to work with AP form -->
+                </div> <!-- content -->
+                <!-- Footer Start -->
+                <footer class="footer" style="background-color:#fff"></footer>
+                <!-- end Footer -->
+            </div> <!-- End Page Contant -->
+        </div> <!-- END wrapper -->
+        <!-- bundle -->
+        <script src="assets/js/vendor.min.js"></script>
+        <script src="assets/js/app.min.js"></script>
+        <!-- Typehead -->
+        <script src="assets/js/vendor/handlebars.min.js"></script>
+        <script src="assets/js/vendor/typeahead.bundle.min.js"></script>
+        <!-- Demo -->
+        <script src="assets/js/pages/demo.typehead.js"></script>
+        <!-- Timepicker -->
+        <script src="assets/js/pages/demo.timepicker.js"></script>
+    </body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Add Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Coderthemes" name="author">
+    <link rel="shortcut icon" href="assets/images/fav.png">
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+
+</head>
+
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+
+    <div class="wrapper">
+
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+        <div class="content-page" style="background-color: #e7e5e5;">
+            <div class="content">
+
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.jsp">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a style="height:1px;" class="nav-link dropdown-toggle nav-user arrow-none me-0"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">
+                                        Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+
+                                <a href="Login page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+
+
+
+                <div class="container-fluid" style="background-color:none; height:680px; margin-bottom: -24px;">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title"><img src="assets/images/to-do-list.gif" alt="img"
+                                        style="border-radius:5px; height: 40px;">
+                                    Enter General Query Details Here</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" style=" background-color: none; height:580px;">
+                        <form action="AddGeneralQuery" style="background:transparent;" method="post">
+                            <input type="hidden" name="agent_name" value="">
+                            <div class="form first" style="background-color: none; width: 100%;">
+                                <div class="details personal" style="background-color: none;">
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Time</label>
+                                            <input type="time" placeholder="Enter time" name="time"
+                                                value="<%= formattedTime %>">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Date</label>
+                                            <input type="date" placeholder="Enter Date" name="date"
+                                                value="<%= formattedDate%>">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Customer Name</label>
+                                            <input type="text" placeholder="Enter Customer Name" name="customer_name">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Customer Mobile Number</label>
+                                            <input type="text" type="tel" pattern="\d{10}"
+                                                placeholder="Enter Customer Mobile Number" name="mobile_number"
+                                                data-toggle="input-mask" data-mask-format="0000000000">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Alternate Number</label>
+                                            <input type="text" type="tel" pattern="\d{10}"
+                                                placeholder="Enter Alternate Number" name="alternate_number"
+                                                data-toggle="input-mask" data-mask-format="0000000000">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Pincode</label>
+                                            <input type="text" pattern="[0-9]{6}" placeholder="Enter Customer Pincode"
+                                                name="pincode" data-toggle="input-mask" data-mask-format="000000">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>City / State</label>
+                                            <input type="text" placeholder="Enter City / State" name="city_state">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Email</label>
+                                            <input type="email" placeholder="Enter Email" name="email">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>SOA</label>
+                                            <select name="soa">
+                                                <option disabled selected>Select SOA</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Lead ID</label>
+                                            <input type="text" placeholder="Enter Lead ID" name="lead_id">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Complaint / Case Number</label>
+                                            <input type="text" placeholder="Enter Complaint Number"
+                                                name="complaint_number">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>BP Number</label>
+                                            <input type="text" placeholder="Enter BP Number" name="bp_number">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Remarks</label>
+                                            <textarea placeholder="Enter Remarks Here" name="remarks"></textarea>
+                                        </div>
+                                        <div class="input-field">
+                                            <label for="color">Select a Color</label>
+                                            <select id="color" name="querycolor">
+                                                <option value="Select Color" disabled>Select
+                                                    Color To Highlight Data</option>
+                                                <option value="Color 0" style="background-color: #ffffff;" selected>
+                                                    None</option>
+                                                <option value="Color 1" style="background-color: #ffb3b3;">Color 1
+                                                </option>
+                                                <option value="Color 2" style="background-color: #deffde;">Color 2
+                                                </option>
+                                                <option value="Color 3" style="background-color: #dfdffd;">Color 3
+                                                </option>
+                                                <option value="Color 4" style="background-color: #ffffbc;">Color 4
+                                                </option>
+                                                <option value="Color 5" style="background-color: #ffd7ff;">Color 5
+                                                </option>
+                                                <option value="Color 6" style="background-color: #b2ffff;">Color 6
+                                                </option>
+                                                <option value="Color 7" style="background-color: #a5ccff;">Color 7
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="background-color: none; justify-items: center; width: 100%;">
+                                    <button type="submit" class="btn btn-primary"
+                                        title="Click to save your records"><img src="assets/images/shield.gif" alt="img"
+                                            style="border-radius:5px; height: 30px;">&nbsp; Save
+                                        Data
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <footer class="footer" style="background-color:#fff">
+
+            </footer>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/include.js"></script>
+
+
+    <script src="assets/js/vendor/handlebars.min.js"></script>
+    <script src="assets/js/vendor/typeahead.bundle.min.js"></script>
+
+
+    <script src="assets/js/pages/demo.typehead.js"></script>
+
+
+    <script src="assets/js/pages/demo.timepicker.js"></script>
+
+</body>
+
+
+
+
+
+
+</html>

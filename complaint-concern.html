@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Complaints & Concerns</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Helpline tool" name="description">
+    <meta content="Coderthemes" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/fav.png">
+
+    <!-- App css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <style>
+        thead,
+        tbody {
+            text-align-last: center;
+            text-wrap: nowrap;
+        }
+
+        tbody tr {
+            text-align-last: center;
+        }
+
+        .appointment-table {
+            max-height: 400px;
+            height: fit-content;
+        }
+
+        .appointment-table table td {
+            padding: 1px;
+            font-size: 14px;
+        }
+
+        .appointment-table table th {
+            padding: 5px;
+            background-color: rgb(207, 207, 207);
+            color: #4d4c4c;
+            font-size: 14px;
+        }
+
+        .appointment-table table tbody tr {
+            margin-top: 50px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 17px;
+            margin-bottom: 0px;
+            flex-wrap: wrap;
+        }
+
+        /* Common pagination button styles */
+        .pagination-button,
+        .pagination a {
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 8px 16px;
+            margin: 0 5px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Styling for "Previous" and "Next" buttons */
+        .pagination-button.prev,
+        .pagination-button.next {
+            font-weight: bold;
+        }
+
+        /* Active page link style */
+        .pagination a.active {
+            background-color: #a160ddc7;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Hover effect */
+        .pagination a:hover,
+        .pagination-button:hover {
+            background-color: #adadadd8;
+            color: white;
+        }
+
+        /* Disabled buttons */
+        .pagination a.disabled {
+            background-color: #e0e0e0;
+            color: #aaa;
+            pointer-events: none;
+        }
+
+        /* Pagination container buttons alignment */
+        .pagination .prev,
+        .pagination .next {
+            font-weight: bold;
+        }
+
+        .status {
+            max-width: fit-content;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: none;
+            background-color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-right: 10px;
+            text-shadow: 1px 0px 0px gray;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+
+            .pagination-button,
+            .pagination a {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
+
+</head>
+
+
+
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <!-- Begin page -->
+    <div class="wrapper">
+
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+
+        <!-- Start Page Content here -->
+        <div class="content-page" style="background-color: #e7e5e5;">
+            <div class="content">
+                <!-- Topbar Start -->
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.html">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false" style="height:1px">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+
+                                <a href="Login-page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+                <!-- end Topbar -->
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+
+                                <h4 class="page-title">
+                                    <img src="assets/images/files.gif" alt="img"
+                                        style="border-radius:5px; height: 40px;">
+                                    Complaints &
+                                    Concerns
+                                    Data
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    <div class="row" style="margin-top:-10px; background-color:none;">
+                        <div class="col-md-12">
+                            <div class="card" style="background-color:none;">
+                                <div class="card-body" style="height:85px;">
+                                    <div class="tab-content" style="background-color:none;">
+                                        <div class="tab-pane show active" id="inline-form-preview"
+                                            style=" display: flex; justify-content: space-between ;">
+                                            <ul class="list-unstyled topbar-menu float-end mb-0"
+                                                style="background-color: none; width: 100%; display:flex; justify-content: space-between;">
+                                                <li class="dropdown notification-list topbar-dropdown"
+                                                    style="background-color: #5ab7d3; height:40px; margin-left:0; border-radius:3px;">
+                                                    <a class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" href
+                                                        role="button" aria-haspopup="false" aria-expanded="false">
+                                                        <span
+                                                            class="int-productdata align-middle d-none d-sm-inline-block"
+                                                            style="color: #fff; padding: 10px; border:none;"><img
+                                                                src="assets/images/list.gif" alt="img"
+                                                                style="border-radius:5px; height: 30px; margin-top: -5px;">
+                                                            Select
+                                                            category
+                                                            <i
+                                                                class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i></span>
+                                                    </a>
+                                                    <div
+                                                        class="dropdown-menu dropdown-menu-start dropdown-menu-animated topbar-dropdown-menu">
+
+                                                        <!-- Product Complaint -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                Product Complaint – Dissatisfied Customer
+                                                            </span>
+                                                        </a>
+
+                                                        <!-- Service Complaint -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                Service Complaint
+                                                            </span>
+                                                        </a>
+
+                                                        <!-- Service Complaint & Concern -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                Service Complaint & Concern
+                                                            </span>
+                                                        </a>
+
+                                                        <!-- General Complaint & Concern -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                General Complaint & Concern
+                                                            </span>
+                                                        </a>
+
+                                                        <!-- Mail to TSO -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                Mail to TSO
+                                                            </span>
+                                                        </a>
+
+                                                        <!-- Dealer Complaint -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                Complaint Against Authorized Dealer
+                                                            </span>
+                                                        </a>
+
+                                                        <!-- Contractor Complaint -->
+                                                        <a href="#" class="dropdown-item notify-item">
+                                                            <i class="mdi mdi-file-document-edit-outline"></i>
+                                                            <span class="align-middle">
+                                                                Contractor Complaint Tracker
+                                                            </span>
+                                                        </a>
+
+                                                    </div>
+
+                                                </li>
+                                                <li>
+                                                    <!--Call Other User-->
+                                                    <a href="add-complaint-concern.html">
+                                                        <button type="submit"
+                                                            class="int-productdata btn btn-primary mb-2"
+                                                            title="Add Data"><img src="assets/images/plus.gif" alt="img"
+                                                                style="border-radius:5px; height: 30px; margin-top: -5px;">
+                                                            Add
+                                                            New</button>
+                                                    </a>
+                                                </li>
+                                                <li
+                                                    style="display: flex; justify-content: space-evenly; background-color: none;">
+                                                    <form id="myForm" method="post"
+                                                        class="row gy-2 gx-2 align-items-center justify-content-around"
+                                                        action="#">
+                                                        <div class="col-xl-4"
+                                                            style="background-color: none; width:auto; margin-top: -1px;">
+                                                            <div title="Select date range for your data"
+                                                                class="app-search dropdown">
+                                                                <input name="range" type="text"
+                                                                    class="int-productdata form-control date"
+                                                                    data-toggle="date-picker" data-picker="true"
+                                                                    data-locale="{'format': 'DD/MM hh:mm A'}"
+                                                                    style="width:230px; height:35px; margin-left:5px;border: 1px solid #ebebeb;">
+                                                                <span class="search-icon">
+                                                                    <img src="assets/images/daterange.gif" alt="img"
+                                                                        style="border-radius:5px; height: 30px; margin-top: -5px;">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" name="type" value="<%= category%>">
+                                                        <div class="col-xl-4"
+                                                            style="background-color:none; width:auto;">
+                                                            <a href="#" id="myAnchor">
+                                                                <button type="button"
+                                                                    class="int-productdata btn btn-danger mb-2 me-2"
+                                                                    title="Export Only Current File"><img
+                                                                        src="assets/images/save-file.gif" alt="img"
+                                                                        style="border-radius:5px; height: 30px; margin-top: -5px;"></button>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xl-4"
+                                                            style="background-color:none; width:auto;">
+                                                            <a href="#" id="myAnchor0">
+                                                                <button type="button"
+                                                                    class="int-productdata btn btn-danger mb-2 me-2"
+                                                                    title="Export All Files"><img
+                                                                        src="assets/images/download-folder.gif"
+                                                                        alt="img"
+                                                                        style="border-radius:5px; height: 30px; margin-top: -5px;"></button>
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end preview-->
+                                </div>
+                                <!-- end tab-content-->
+                            </div>
+                            <!-- end card-body -->
+                        </div> <!-- end card -->
+                    </div> <!-- end col -->
+                </div>
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:5px; background-color: none; ">
+                        <div class="page-title-box"
+                            style="background-color:none; margin-bottom:0px; height:60px; margin-top: -20px;">
+                            <ul class="list-unstyled topbar-menu mb-0"
+                                style="background-color: none; width: 100%; display:flex; justify-content: space-between;">
+                                <li style="background-color:none;">
+                                    <h4 class="page-title" style="margin-top:-5px;">
+                                        <img src="assets/images/analytics.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;">
+                                        Product Complaint – Dissatisfied Customer
+                                    </h4>
+                                </li>
+                                <li style="background-color: none; height: fit-content; margin-top: 15px;">
+                                    <div class="app-search dropdown float-end">
+                                        <form method="get" action="#">
+                                            <input type="text" class="form-control" placeholder="Search From Data.... "
+                                                id="" value="" name="search"
+                                                style="background-color: #fff; border-radius: 5px; width: fit-content; border:1px solid #dbdbdb;">
+                                            <input type="hidden" id="category" value="<%=category%>" name="value">
+                                            <span class="search-icon">
+                                                <img src="assets/images/searchicon.png" alt="img" style="height:20px;">
+                                            </span>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body" style="height:100%; background-color: none;">
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="responsive-preview">
+                                            <div style="overflow-x:auto; overflow-y:auto;" class="appointment-table">
+
+
+                                                <!-- Table -->
+                                                <table class="table table-bordered table-centered mb-0" id="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">
+                                                                Edit
+                                                            </th>
+                                                            <th scope="col">
+                                                                Sr.
+                                                                No.
+                                                            </th>
+                                                            <th scope="col">
+                                                                Date
+                                                            </th>
+                                                            <th scope="col">
+                                                                Time
+                                                            </th>
+                                                            <th scope="col">
+                                                                Customer
+                                                                Name
+                                                            </th>
+                                                            <th scope="col">
+                                                                Mobile
+                                                                Number
+                                                            </th>
+                                                            <th scope="col">
+                                                                Alternate
+                                                                Number
+                                                            </th>
+                                                            <th scope="col">
+                                                                Pincode
+                                                            </th>
+                                                            <th scope="col">
+                                                                Complaint
+                                                                Number
+                                                            </th>
+                                                            <th scope="col">
+                                                                Description
+                                                            </th>
+                                                            <th scope="col">
+                                                                Advisor
+                                                                Name
+                                                            </th>
+                                                            <th scope="col">
+                                                                Aspect
+                                                                ID
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="geeks">
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#" value"">
+                                                                    <img src="assets/images/data-edit.png" alt="edit"
+                                                                        style="border-radius:5px; height: 20px;">
+                                                                </a>
+                                                            </td>
+                                                            <td>1</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <div class="pagination">
+                                                <a href="#"
+                                                    style="background-color: #6554c5c7; color:#fff;">Previous</a>
+                                                <a href="#" class="btn-primary active">1</a>
+                                                <a href="#" class="btn-primary">2</a>
+                                                <a href="#" class="btn-primary">3
+                                                </a>
+                                                <a href="#" class="next"
+                                                    style="background-color: #6554c5c7; color:#fff;">Next</a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- container -->
+        </div> <!-- content -->
+        <!-- Footer Start -->
+        <footer class="footer" style="background-color: #fff;">
+
+        </footer>
+        <!-- end Footer -->
+
+        <!-- bundle -->
+        <script src="assets/js/vendor.min.js"></script>
+        <script src="assets/js/app.min.js"></script>
+        <script src="assets/js/table search int base.js"></script>
+        <script src="assets/js/row bg.js"></script>
+        <script src="assets/js/include.js"></script>
+
+        <!-- third party js -->
+        <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
+        <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
+        <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
+        <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/dataTables.checkboxes.min.js"></script>
+        <!-- Begin page -->
+
+        <!-- third party js ends -->
+</body>
+
+</html>

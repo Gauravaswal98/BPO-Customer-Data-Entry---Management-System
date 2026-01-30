@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Other PIS / Scripts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="Coderthemes" name="author">
+
+    <link rel="shortcut icon" href="assets/images/fav.png">
+
+
+    <link href="assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css">
+
+
+
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <style>
+        .appointment-table {
+            max-height: 200px;
+            height: fit-content;
+        }
+
+        .appointment-table table td {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .appointment-table table th {
+            background-color: rgb(207, 207, 207);
+            color: #4d4c4c;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .appointment-table table tbody tr {
+            margin-top: 50px;
+        }
+
+        details[open] summary {
+            color: #c51441;
+        }
+
+        /* Table styling */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        /* Table header styling */
+        .details-table th {
+            background-color: #0078d7;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        /* Table data cell styling */
+        .details-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            color: #555;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .details-container {
+                width: 100%;
+                padding: 0;
+            }
+
+            .details-table,
+            .details-table th,
+            .details-table td {
+                display: block;
+                width: 100%;
+            }
+
+            /* Scrollable table for smaller screens */
+            .details-table {
+                overflow-x: auto;
+                display: inline-block;
+            }
+
+            .details-table th,
+            .details-table td {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+    <div class="wrapper">
+
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+
+        <div class="content-page" style="background-color: #e9e9e9;">
+            <div class="content" style="border-color:none;">
+
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <span class="align-middle d-none d-sm-inline-block" style="color: #7c7c7c;"><img
+                                        src="assets/images/list.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                        style=" border-radius:5px; height: 40px;"> Select category <i
+                                        class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
+
+
+                                <a href="#base" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> SmartCare</span>
+                                </a>
+
+
+                                <a href="#Wood" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Wood Finish</span>
+                                </a>
+
+
+                                <a href="#Metal" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Metal Finish</span>
+                                </a>
+
+
+                                <a href="#loctite" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Loctite</span>
+                                </a>
+
+
+                                <a href="#Distempers" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Distempers</span>
+                                </a>
+
+
+                                <a href="#floor" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Floor & Tiles</span>
+                                </a>
+
+
+                                <a href="#industrial" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Industrial Paint</span>
+                                </a>
+
+
+                                <a href="#stencils" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Stencils & Books</span>
+                                </a>
+
+
+                                <a href="#3_mango" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> 3 Mangoes Paint</span>
+                                </a>
+
+
+                                <a href="#others" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-format-paint me-1"></i>
+                                    <span class="align-middle"> Other PIS</span>
+                                </a>
+                                <hr>
+                                <a href="#scripts" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-book-open-page-variant me-1"></i>
+                                    <span class="align-middle"> Scripts & Other Documents</span>
+                                </a>
+                                <a href="#details" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-ballot-outline me-1"></i>
+                                    <span class="align-middle"> Important Details</span>
+                                </a>
+
+                            </div>
+                        </li>
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.jsp">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+                        <li class="dropdown notification-list">
+                            <a style="height:1px;" class="nav-link dropdown-toggle nav-user arrow-none me-0"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+                                <a href="Login-page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+
+                <div class="container-fluid" style="background-color:none;">
+
+                    <section id="base">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">SmartCare Products </h4>
+                                        <input id="gfg" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card" style="background-color: none;">
+
+                                    <div class="card-body" style="height:100%; background-color:none;">
+
+                                        <div class="tab-content" style="background-color: none;">
+
+                                            <div class="tab-pane show active" id="responsive-preview"
+                                                style="background-color: none;">
+
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table" class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Product Code</th>
+                                                                <th>Warranty</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="geeks">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>
+                                                                    <a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a>
+                                                                </td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>
+                                                                    <a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="Wood">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Wood Finish </h4>
+                                        <input id="sealer" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-sealer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="sealer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="Metal">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Metal Finish </h4>
+                                        <input id="stain" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="loctite">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Loctite / Adhesives</h4>
+                                        <input id="int-putty" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="Distempers">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Distempers </h4>
+                                        <input id="int-primer" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="floor">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Floor & Tiles </h4>
+                                        <input id="metl" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="industrial">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Industrial Paint</h4>
+                                        <input id="woodp" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="stencils">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Stencils & Books</h4>
+                                        <input id="mango" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="3_mango">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">3 Mangoes Paint</h4>
+                                        <!-- <input id="mango" class="int-productdata" type="text"
+                                                placeholder="Search products here..."> -->
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="others">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Other PIS</h4>
+                                        <input id="oth" class="int-productdata" type="text"
+                                            placeholder="Search products here...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none; "
+                                                    class="appointment-table">
+                                                    <table id="table-stainer"
+                                                        class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product Name</th>
+                                                                <th>Surface</th>
+                                                                <th>Product Code</th>
+                                                                <th>View PIS</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="stainer-data">
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="scripts">
+                        <div class="row" style="margin-top:5px; background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color:none;">
+                                    <div class="col-12" style=" display:flex; justify-content: space-between;">
+                                        <h4 class="page-title">Scripts & Other Documents</h4>
+                                        <input id="ext-base" class="int-productdata" type="text"
+                                            placeholder="Search Script / Docs...">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body" style="height:100%; background-color:none;">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <div style="overflow-x:auto; overflow-y:auto; background-color:none;"
+                                                    class="appointment-table">
+                                                    <table class="table table-bordered table-centered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Script / Document Name</th>
+                                                                <th>View File</th>
+                                                                <th>Upload Date</th>
+                                                                <th>Upload By</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/eye.png"
+                                                                            style="height:20px;"></a></td>
+                                                                <td>Data</td>
+                                                                <td>Data</td>
+                                                                <td><a href="#"><img src="assets/images/delete-data.png"
+                                                                            style="height:20px;"></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="details">
+                        <div class="row" style="background-color:none;">
+                            <div class="col-12">
+                                <div class="row" style="background-color: none;">
+                                    <div class="col-12">
+                                        <h4 class="page-title">Other Important Details</h4>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                                <div class="card" style="background-color:#fafeff;">
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="responsive-preview">
+                                                <details>
+                                                    <summary>Important Links <span><img src="assets/images/link.png"
+                                                                alt="img" style="height: 35px;"></span></summary>
+                                                    <hr>
+                                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                                        <span style="width:260px; display:flex; align-items:center;">
+                                                            <i class="mdi mdi-numeric-1-box-multiple-outline"
+                                                                style="margin-right:8px;"></i>
+                                                            <b>Link Name</b>
+                                                        </span>
+
+                                                        <span style="width:40px; text-align:center;">
+                                                            <i class="mdi mdi-arrow-right-bold"></i>
+                                                        </span>
+
+                                                        <span>Enter Link</span>
+                                                    </div>
+
+                                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                                        <span style="width:260px; display:flex; align-items:center;">
+                                                            <i class="mdi mdi-numeric-2-box-multiple-outline"
+                                                                style="margin-right:8px;"></i>
+                                                            <b>Link Name</b>
+                                                        </span>
+
+                                                        <span style="width:40px; text-align:center;">
+                                                            <i class="mdi mdi-arrow-right-bold"></i>
+                                                        </span>
+
+                                                        <span>Enter Link</span>
+                                                    </div>
+
+                                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                                        <span style="width:260px; display:flex; align-items:center;">
+                                                            <i class="mdi mdi-numeric-3-box-multiple-outline"
+                                                                style="margin-right:8px;"></i>
+                                                            <b>Link Name</b>
+                                                        </span>
+
+                                                        <span style="width:40px; text-align:center;">
+                                                            <i class="mdi mdi-arrow-right-bold"></i>
+                                                        </span>
+
+                                                        <span>Enter Link</span>
+                                                    </div>
+
+                                                    <!-- same pattern for 4–10 -->
+
+
+                                                </details>
+                                                <details>
+                                                    <summary>Important Email Ids <span><img
+                                                                src="assets/images/email.png" alt="img"
+                                                                style="height: 35px;"></span></summary>
+                                                    <hr>
+                                                    <table class="details-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Concern</th>
+                                                                <th>Email ID</th>
+                                                                <th>TAT</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="text-align:left;">Investors</td>
+                                                                <td style="text-align:left;">Enter Email ID</td>
+                                                                <td style="text-align:left;">Enter TAT</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align:left;">Customer care</td>
+                                                                <td style="text-align:left;">Enter Email ID</td>
+                                                                <td style="text-align:left;">Enter TAT</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align:left;">Customer care (PPG)</td>
+                                                                <td style="text-align:left;">Enter Email ID</td>
+                                                                <td style="text-align:left;">Enter TAT</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align:left;">Dealership</td>
+                                                                <td style="text-align:left;">Enter Email ID</td>
+                                                                <td style="text-align:left;">Enter TAT</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align:left;">Careers</td>
+                                                                <td style="text-align:left;">Enter Email ID</td>
+                                                                <td style="text-align:left;">Enter TAT</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align:left;">CSR ( NGO or help For
+                                                                    painting )</td>
+                                                                <td style="text-align:left;">Enter Email ID</td>
+                                                                <td style="text-align:left;">Enter TAT</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </details>
+                                                <details>
+                                                    <summary>Important TollFree Numbers<span><img
+                                                                src="assets/images/toll-free.png" alt="img"
+                                                                style="height: 35px;"></span></summary>
+                                                    <hr>
+                                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                                        <span style="width:300px; display:flex; align-items:center;">
+                                                            <i class="mdi mdi-numeric-1-box-multiple-outline"
+                                                                style="margin-right:8px;"></i>
+                                                            <b>Tollfree Name</b>
+                                                        </span>
+                                                        <span style="width:40px; text-align:center;">
+                                                            <i class="mdi mdi-arrow-right-bold"></i>
+                                                        </span>
+                                                        <span>Enter Tollfree Number</span>
+                                                    </div>
+
+                                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                                        <span style="width:300px; display:flex; align-items:center;">
+                                                            <i class="mdi mdi-numeric-2-box-multiple-outline"
+                                                                style="margin-right:8px;"></i>
+                                                            <b>Tollfree Name</b>
+                                                        </span>
+                                                        <span style="width:40px; text-align:center;">
+                                                            <i class="mdi mdi-arrow-right-bold"></i>
+                                                        </span>
+                                                        <span>Enter Tollfree Number</span>
+                                                    </div>
+
+                                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                                        <span style="width:300px; display:flex; align-items:center;">
+                                                            <i class="mdi mdi-numeric-3-box-multiple-outline"
+                                                                style="margin-right:8px;"></i>
+                                                            <b>Tollfree Name</b>
+                                                        </span>
+                                                        <span style="width:40px; text-align:center;">
+                                                            <i class="mdi mdi-arrow-right-bold"></i>
+                                                        </span>
+                                                        <span>Enter Tollfree Number</span>
+                                                    </div>
+
+                                                </details>
+                                            </div> <!-- end preview-->
+                                        </div> <!-- end tab-content-->
+                                    </div> <!-- end card body-->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
+
+
+            <footer class="footer" style="border-top-right-radius:100px;
+                        border-top-left-radius:100px;
+                        bottom:0;
+                        padding:5px;
+                        position: absolute;
+                        background-color: #fffede;
+                        right: 0;
+                        color: #6b6b6b;">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="more" style="background-color: none; width: auto;font-weight: 550;">
+                            For more PIS please visit official website &nbsp;<i class="mdi mdi-hand-pointing-right"></i>
+                        </div>
+                        <div class="col-md-6" style="background-color: none; width: auto; margin-left: 10px;">
+                            <div class="web">
+                                <a href="#" target="_blank">YourWebsiteName</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+
+        </div>
+
+    </div>
+    <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/table search int primer.js"></script>
+    <script src="assets/js/table search ext base.js"></script>
+    <script src="assets/js/table search int putty.js"></script>
+    <script src="assets/js/table search int base.js"></script>
+    <script src="assets/js/table search sealer.js"></script>
+    <script src="assets/js/table search stainer.js"></script>
+    <script src="assets/js/table search metal primer.js"></script>
+    <script src="assets/js/table search wood primer.js"></script>
+    <script src="assets/js/table search mangos.js"></script>
+    <script src="assets/js/table search other.js"></script>
+    <script src="assets/js/row bg.js"></script>
+    <script src="assets/js/summary.js"></script>
+    <script src="assets/js/include.js"></script>
+
+
+
+    <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
+    <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
+    <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
+    <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
+    <script src="assets/js/vendor/dataTables.checkboxes.min.js"></script>
+
+
+
+</body>
+
+
+</html>

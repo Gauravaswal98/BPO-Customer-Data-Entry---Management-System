@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>General Query</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Coderthemes" name="author">
+
+    <link rel="shortcut icon" href="assets/images/fav.png">
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <style>
+        thead,
+        tbody {
+            text-align-last: center;
+            text-wrap: nowrap;
+        }
+
+        tbody tr {
+            text-align-last: left;
+        }
+
+        .appointment-table {
+            max-height: 270px;
+            height: fit-content;
+        }
+
+        .appointment-table table td {
+            padding: 1px;
+            font-size: 14px;
+        }
+
+        .appointment-table table th {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .appointment-table table tbody tr {
+            margin-top: 50px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 17px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Common pagination button styles */
+        .pagination-button,
+        .pagination a {
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 8px 16px;
+            margin: 0 5px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Styling for "Previous" and "Next" buttons */
+        .pagination-button.prev,
+        .pagination-button.next {
+            font-weight: bold;
+        }
+
+        /* Active page link style */
+        .pagination a.active {
+            background-color: #a160ddc7;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Hover effect */
+        .pagination a:hover,
+        .pagination-button:hover {
+            background-color: #adadadd8;
+            color: white;
+        }
+
+        /* Disabled buttons */
+        .pagination a.disabled {
+            background-color: #e0e0e0;
+            color: #aaa;
+            pointer-events: none;
+        }
+
+        /* Pagination container buttons alignment */
+        .pagination .prev,
+        .pagination .next {
+            font-weight: bold;
+        }
+
+        .status {
+            max-width: fit-content;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: none;
+            background-color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-right: 10px;
+            text-shadow: 1px 0px 0px gray;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+
+            .pagination-button,
+            .pagination a {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+
+    <div class="wrapper">
+
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+        <div class="content-page" style="background-color: #e7e5e5;">
+            <div class="content" style="background-color:none; margin-bottom: -24px;">
+
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.html">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false" style="height:1px">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+
+                                <a href="Login-page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+
+
+
+                <div class="container-fluid">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title"><img src="assets/images/dashboard.gif" alt="img"
+                                        style="border-radius:5px; height: 40px;"> General Query Data </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:-10px; background-color:none;">
+                        <div class="col-md-12">
+                            <div class="card" style="background-color:none;">
+                                <div class="card-body" style="height:85px">
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="inline-form-preview">
+                                            <div class="col-lg-6"
+                                                style="background-color: none; width:100% ; display: flex; justify-content: space-between;overflow:auto;">
+                                                <div>
+                                                    <a href="Add-general-query.html">
+                                                        <button type="submit"
+                                                            class="int-productdata btn btn-primary mb-2"><img
+                                                                src="assets/images/plus.gif" alt="img"
+                                                                style="border-radius:5px; height: 30px; margin-top: -5px;">
+                                                            Add New</button>
+                                                    </a>
+                                                </div>
+
+                                                <form id="" action="" method="" class="d-flex gap-1">
+                                                    <div class="mb-3">
+                                                        <div class="d-flex align-items-center"
+                                                            style="background-color: none;">
+                                                            <input name="range" type="text" class="form-control date"
+                                                                data-toggle="date-picker" data-picker="true"
+                                                                data-locale="{'format': 'DD/MM hh:mm A'}"
+                                                                style="width:200px; height:35px;" value="">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <select id="colorFilter" name="colorFilter"
+                                                            class="form-select int-productdata">
+                                                            <option value="Select Color" selected>Select Color</option>
+
+                                                            <option value="Color 0" style="background-color: #ffffff;">
+                                                                None
+                                                            </option>
+
+                                                            <option value="Color 1" style="background-color: #ffb3b3;">
+                                                                Color 1
+                                                            </option>
+
+                                                            <option value="Color 2" style="background-color: #deffde;">
+                                                                Color 2
+                                                            </option>
+
+                                                            <option value="Color 3" style="background-color: #dfdffd;">
+                                                                Color 3
+                                                            </option>
+
+                                                            <option value="Color 4" style="background-color: #ffffbc;">
+                                                                Color 4
+                                                            </option>
+
+                                                            <option value="Color 5" style="background-color: #ffd7ff;">
+                                                                Color 5
+                                                            </option>
+
+                                                            <option value="Color 6" style="background-color: #b2ffff;">
+                                                                Color 6
+                                                            </option>
+
+                                                            <option value="Color 7" style="background-color: #a5ccff;">
+                                                                Color 7
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="app-search dropdown">
+                                                        <div>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Search..." id="" value="" name="search">
+                                                            <span class="search-icon"> <img
+                                                                    src="assets/images/searchicon.png" alt="img"
+                                                                    style="height:20px;"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="submit"
+                                                            class="int-productdata btn btn-danger mb-2">
+                                                            <img src="assets/images/double-check.gif" alt="img"
+                                                                style="border-radius:5px; height: 30px; margin-top: -5px;">
+                                                        </button>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="button"
+                                                            class="int-productdata btn btn-warning mb-2"
+                                                            onclick="redirectToGeneralQuery()"
+                                                            title="Click for refresh this page">
+                                                            <img src="assets/images/refresh.gif" alt="img"
+                                                                style="border-radius:5px; height: 30px; margin-top: -5px;">
+                                                        </button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row" style="margin-top:5px;">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body" style="height:100%;">
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="responsive-preview">
+                                            <div style="overflow-x:auto; overflow-y:auto;" class="appointment-table">
+                                                <table class="table table-bordered table-centered mb-0" id="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Edit</th>
+                                                            <th scope="col">Sr. No.</th>
+                                                            <th scope="col">Time</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Customer Name</th>
+                                                            <th scope="col">Customer Mobile No.</th>
+                                                            <th scope="col">Alternate Number</th>
+                                                            <th scope="col">Pincode</th>
+                                                            <th scope="col">City / State</th>
+                                                            <th scope="col">Email</th>
+                                                            <th scope="col">SOA</th>
+                                                            <th scope="col">Lead ID</th>
+                                                            <th scope="col">Complaint / Case Number</th>
+                                                            <th scope="col">BP Number</th>
+                                                            <th scope="col">Remarks</th>
+                                                            <th scope="col">Advisor Name</th>
+                                                            <th scope="col">Color</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="geeks">
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <i class="mdi mdi-pencil me-1"></i>
+                                                                </a>
+                                                            </td>
+                                                            <td>1</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>Data</td>
+                                                            <td>
+                                                                Data
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- end table-wrapper -->
+                                            <div class="pagination">
+                                                <a href="#"
+                                                    style="background-color: #6554c5c7; color:#fff;">Previous</a>
+                                                <a href="#" class="btn-primary active">1</a>
+                                                <a href="#" class="btn-primary">2</a>
+                                                <a href="#" class="btn-primary">3
+                                                </a>
+                                                <a href="#" class="next"
+                                                    style="background-color: #6554c5c7; color:#fff;">Next</a>
+
+
+                                            </div>
+                                        </div> <!-- end preview-->
+                                    </div> <!-- end tab-content-->
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div> <!-- end col-->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer" style="background-color:#fff;">
+
+    </footer>
+
+
+
+
+
+
+    <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/table search.js"></script>
+    <script src="assets/js/table search int base.js"></script>
+    <script src="assets/js/row bg.js"></script>
+    <script src="assets/js/include.js"></script>
+
+
+    <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
+    <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
+    <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
+    <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
+    <script src="assets/js/vendor/dataTables.checkboxes.min.js"></script>
+
+
+
+</body>
+
+</html>

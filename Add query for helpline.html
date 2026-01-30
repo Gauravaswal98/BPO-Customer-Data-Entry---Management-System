@@ -1,0 +1,446 @@
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@ include file="Validation.jsp" %>
+<%    String userType = (String) session.getAttribute("user_type");
+    String username = (String) session.getAttribute("username");
+    String category = request.getParameter("value");
+    String aspect_id = (String) session.getAttribute("aspect_id");
+
+    LocalDateTime now = LocalDateTime.now();
+
+    // Define the date format: yyyy-MM-dd
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    // Get current time
+    LocalTime currentTime = LocalTime.now();
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    String formattedTime = currentTime.format(timeFormatter);
+
+    // Format the date and time separately
+    String formattedDate = now.format(dateFormatter);
+
+
+    boolean isAdmin = "Admin".equals(userType);
+
+    boolean isAgent = "Agent".equals(userType);
+
+%>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Add Data</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Coderthemes" name="author">
+
+        <link rel="shortcut icon" href="assets/images/fav.png">
+
+
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+        <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+        
+    </head>
+
+
+
+    <body class="loading"
+          data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+
+        <div class="wrapper">
+
+            <!-- Sidebar menu code -->
+            <jsp:include page="Headers.jsp" />
+            <!-- Sidebar menu code end -->
+            <div class="content-page" style="background-color: #e7e5e5;">
+                <div class="content">
+
+                    <div class="navbar-custom">
+                        <ul class="list-unstyled topbar-menu float-end mb-0">
+                            <li class="dropdown notification-list d-lg-none">
+                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                   role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="dripicons-search noti-icon"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                    <form class="p-3">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                               aria-label="Recipient's username">
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="notification-list" style="margin-top: 15px;">
+                                <a class="nav-link end-bar-toggle" href="notepad.jsp">
+                                    <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                         style=" border-radius:5px; height: 40px;">
+                                    Add Notes
+                                </a>
+                            </li>
+
+
+                            <li class="dropdown notification-list">
+                                <a style="height:1px;" class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <span class="account-user-avatar"> 
+                                        <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                    </span>
+                                    <span>
+                                        <span class="account-user-name"><%= username%></span>
+
+
+                                        <%    if ("Admin".equals(userType)) {
+                                        %>
+                                        <span class="account-position">Admin</span>
+                                        <% } %>
+
+                                        <%    if ("Agent".equals(userType)) { %>
+                                        <span class="account-position">Advisor</span>
+                                        <% } %>
+
+                                        <%    if ("Others".equals(userType)) { %>
+                                        <span class="account-position">Others</span>
+                                        <% }%>
+                                        
+                                    </span>
+                                </a>
+                                <div
+                                    class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+
+                                    <a href="ChangePassword.jsp" class="dropdown-item notify-item">
+                                        <img src="assets/images/password.gif" alt="img"
+                                             style="border-radius:5px; height: 30px;">
+                                        <span>Change Password</span>
+                                    </a>
+
+                                    <a href="javascript:redirectToServlet()" class="dropdown-item notify-item">
+                                        <img src="assets/images/log-out.gif" alt="img"
+                                             style="border-radius:5px; height: 30px;">
+                                        <span>Logout</span>
+                                    </a>
+                                </div>
+
+                                <script>
+                                    function redirectToServlet() {
+                                        // Replace "/your-servlet-url" with the actual URL of your servlet
+                                        window.location.href = "Logout";
+                                    }
+
+                                </script>
+                            </li>
+
+                        </ul>
+
+                        <button class="button-menu-mobile open-left">
+    <img src="assets/images/menu.gif" alt="img"
+    style="border-radius:5px; height:40px;">
+</button>
+                    </div>
+
+
+
+
+                    <%
+                        if ("queryforhelpline".equals(category)) {
+                    %>
+                    <div class="container-fluid" style="background-color:none; height:500px; margin-bottom:100px;">
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Query For Helpline Details Here</h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="container" style=" background-color: none; height:500px;">
+                            <form action="AddQueryForHelpline" method="post" style="background:transparent;">
+                                <div class="form first" style="background-color: none; width: 100%;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" placeholder="Enter Date" value="<%= formattedDate %>" name="date" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" placeholder="Enter Date" name="time" value="<%= formattedTime %>" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number" name="mobile_number" required
+                                                       data-toggle="input-mask" data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Alternate Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Alternate Number" name="alternate_number"
+                                                       data-toggle="input-mask" data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Pincode</label>
+                                                <input pattern="\d{6}" title="Please enter a valid 6-digit pincode" type="text" placeholder="Enter Pincode" name="pincode" required
+                                                       data-toggle="input-mask" data-mask-format="000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Comments</label>
+                                                <textarea placeholder="Enter Customer Comments Here..." name="customer_comments" required></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>LOB</label>
+                                                <select name="lob" required>
+                                                    <option disabled selected>Select LOB</option>
+                                                    <option value="Smartcare">Smartcare</option>
+                                                    <option value="Smartcare clinic">Smartcare clinic</option>
+                                                    <option value="Warranty">Warranty</option>
+                                                    <option value="DIY">DIY</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text" placeholder="Enter Agent Name" name="agent_name" value="<%= username %>" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Agent Name" name="aspect_id" value="<%= aspect_id %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="query">
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <%
+                    } else if ("Voc".equals(category)) {
+                    %>
+                    <div class="container-fluid" style="background-color:none; height:400px; margin-bottom:100px;">
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Details Here For Voice Of Customer</h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="container" style=" background-color: none; height:400px;">
+                            <form action="AddQueryForHelpline" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" placeholder="Enter Date" name="date" value="<%= formattedDate %>" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" placeholder="Enter Time" name="time"  value="<%= formattedTime %>"  required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Customer Name</label>
+                                                <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                       required>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label>Mobile Number</label>
+                                                <input pattern="\d{10}" title="Please enter a valid 10-digit mobile number" type="text" placeholder="Enter Customer Mobile Number"
+                                                       name="mobile_number" required data-toggle="input-mask"
+                                                       data-mask-format="0000000000">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Words Of Customer</label>
+                                                <textarea placeholder="Enter Words Of Customer Here..." name="customer_words"
+                                                          required></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text" placeholder="Enter Agent Name" name="agent_name" value="<%= username %>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" name="aspect_id" value="<%= aspect_id %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="voc">
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <%
+                    } else if ("Voa".equals(category)) {
+                    %>
+                    <div class="container-fluid" style="background-color:none; height:300px; margin-bottom:100px;">
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title"><img
+                                            src="assets/images/to-do-list.gif" alt="img"
+                                            style="border-radius:5px; height: 40px;"> Enter Details Here For Voice Of Advisor</h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="container" style=" background-color: none; height:300px;">
+                            <form action="AddQueryForHelpline" method="post" style="background:transparent;" id="pcd">
+                                <div class="form first" style="background-color: none;">
+                                    <div class="details personal" style="background-color: none;">
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Date</label>
+                                                <input type="date" placeholder="Enter Date" name="date" value="<%= formattedDate %>"  required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Time</label>
+                                                <input type="time" placeholder="Enter Time" name="time"  value="<%= formattedTime %>" required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text" placeholder="Enter Advisor Name" name="advisor_name"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Words Of Advisor</label>
+                                                <textarea placeholder="Enter Words Of Advisor Here..." name="advisor_words"
+                                                          required></textarea>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Advisor Name</label>
+                                                <input type="text" placeholder="Enter Agent Name" name="agent_name" value="<%= username %>"
+                                                       required>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Aspect ID</label>
+                                                <input type="text" placeholder="Enter Aspect ID" name="aspect_id" value="<%= aspect_id %>" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn" id="form" name="form" value="voa">
+                                        <span class="btnText"><img
+                                                src="assets/images/shield.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <%
+                    } else {
+                    %>
+                    <div class="category-section">
+                        <h1>No Category Selected</h1>
+                        <p>Please select a category to proceed.</p>
+                    </div>
+                    <%
+                        }
+                    %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div> 
+
+
+                <footer class="footer" style="background-color:#fff">
+
+                </footer>
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <script src="assets/js/vendor.min.js"></script>
+        <script src="assets/js/app.min.js"></script>
+
+
+        <script src="assets/js/vendor/handlebars.min.js"></script>
+        <script src="assets/js/vendor/typeahead.bundle.min.js"></script>
+
+
+        <script src="assets/js/pages/demo.typehead.js"></script>
+
+
+        <script src="assets/js/pages/demo.timepicker.js"></script>
+
+    </body>
+
+
+</html>

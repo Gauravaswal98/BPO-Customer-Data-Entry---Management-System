@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Upload PIS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="Coderthemes" name="author">
+    <link rel="shortcut icon" href="assets/images/fav.png">
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <style>
+        .input-field {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border: 1px solid #168594;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field Select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #168594;
+            border-radius: 4px;
+            font-size: 15px;
+            min-width: 200px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field label {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            font-size: 16px;
+            color: #777;
+            transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+        }
+
+        .input-field input:focus {
+            border-color: #168594;
+            outline: none;
+        }
+
+        .input-field select:focus {
+            border-color: #168594;
+            outline: none;
+        }
+
+        .input-field input:focus+label,
+        .input-field input:not(:placeholder-shown)+label {
+            top: -6px;
+            font-size: 14px;
+            color: #168594;
+            background-color: #ffffff;
+            padding: 0 4px;
+            border-radius: 4px;
+            left: 8px;
+        }
+
+        .input-field select:focus+label,
+        .input-field select:not(:placeholder-shown)+label {
+            top: -10px;
+            font-size: 14px;
+            color: #168594;
+            background-color: #ffffff;
+            padding: 0 4px;
+            border-radius: 4px;
+            left: 8px;
+        }
+    </style>
+</head>
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <div class="wrapper">
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+        <div class="content-page" style="background-color: #e7e5e5;">
+            <div class="content">
+                <!-- Topbar Start -->
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.html">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false" style="height:1px">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+
+                                <a href="Login-page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+                <!-- end Topbar -->
+                <!-- container Start-->
+                <div class="container-fluid" style="background-color:none; margin-bottom:20px;">
+                    <!-- end row -->
+                    <div class="row"
+                        style="margin-top: 0px; background-color: none;max-width: fit-content; width: 100%;">
+                        <div class="page-title-box">
+                            <h4 class="page-title"><img src="assets/images/online-student.gif" alt="img"
+                                    style="border-radius:5px; height: 40px;">
+                                Upload PIS (Product Information Sheet)
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="container" style="background-color: none; max-height: fit-content; height: 100%;">
+                        <div class="input-field"
+                            style="width: 100%; display: flex; flex-direction: column; margin-bottom: 30px;">
+                            <select name="reason" id="pis_type" style="border: #168594 1px solid;">
+                                <option disabled selected>Select Here
+                                </option>
+                                <option value="Interior & Exterior">Interior
+                                    & Exterior</option>
+                                <option value="Ancillaries">Ancillaries
+                                </option>
+                                <option value="Other Categories">Other
+                                    Categories</option>
+                            </select>
+                            <label for="pis_type">Select PIS Type</label>
+                        </div>
+
+                        <!-- Interior & Exterior PIS Form -->
+                        <form action="interiorandexterior" method="post" id="int_ext" enctype="multipart/form-data"
+                            style="display: none; min-height:fit-content; height:fit-content;">
+                            <h4 class="page-title" style="color: #947216; text-align: center;">
+                                Upload
+                                Interior &
+                                Exterior PIS Here</h4>
+                            <div class="fields" style="padding:10px; display: flex; gap:10px; flex-wrap: wrap;">
+                                <div class="input-field">
+                                    <select name="pis_category" id="intext_pis_category" onchange="toggleFields()">
+                                        <option disabled selected>Select
+                                            Here</option>
+                                        <option value="Interior Base">
+                                            Interior Base</option>
+                                        <option value="Interior Special Effects">
+                                            Interior Special Effects
+                                        </option>
+                                        <option value="Exterior Base">
+                                            Exterior Base</option>
+                                        <option value="Exterior Special Effects">
+                                            Exterior Special Effects
+                                        </option>
+                                    </select>
+                                    <label for="pis_category">Select PIS
+                                        Category</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" name="product_name" id="product_name1" placeholder="">
+                                    <label for="product_name">Enter Product
+                                        Name</label>
+                                </div>
+                                <div class="input-field" id="product_range_field">
+                                    <select name="product_range" id="product_range1">
+                                        <option disabled selected>Select
+                                            Here</option>
+                                        <option value="Premium">Premium
+                                        </option>
+                                        <option value="Midrange">Midrange
+                                        </option>
+                                        <option value="Economic">Economic
+                                        </option>
+                                    </select>
+                                    <label for="product_range">Select
+                                        Product Range</label>
+                                </div>
+                                <div class="input-field" id="product_finish_field">
+                                    <input type="text" name="product_finish" id="product_finish1" placeholder="">
+                                    <label for="product_finish">Enter
+                                        Product Finish</label>
+                                </div>
+                                <div class="input-field" id="product_warranty_field">
+                                    <input type="text" name="product_warranty" id="product_warranty1" placeholder="">
+                                    <label for="product_warranty">Enter
+                                        Product Warranty</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" name="product_code" id="product_code1" placeholder="">
+                                    <label for="product_code">Enter Product
+                                        Code</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="file" class="form-control" name="upload_pis" id="upload_pis1">
+                                    <label for="upload_pis" class="form-label">Upload
+                                        PIS</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="date" name="upload_date" id="upload_date1" value="<%=todayDate%>">
+                                    <label for="upload_date">Upload
+                                        Date</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" name="upload_by" id="upload_by1" placeholder="" value="">
+                                    <label for="upload_by">Upload By</label>
+                                </div>
+                                <div style="display: flex; justify-content: center; width: 100%;">
+                                    <button id="stopWatch" type="submit" class="btn btn-primary w-100 float-center"
+                                        style="background-color: #9053df; margin-right:20px;">
+                                        <img src="assets/images/upload.gif" alt="img"
+                                            style="border-radius:5px; height: 30px;">&nbsp;
+                                        Upload PIS
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Ancillaries PIS Form -->
+                        <form action="ancillaries" method="post" id="ancillaries" enctype="multipart/form-data"
+                            style="display: none; min-height:fit-content; height:fit-content;">
+                            <h4 class="page-title" style="color: #947216; text-align: center;">
+                                Upload Ancillaries PIS
+                                Here</h4>
+                            <div class="fields" style="padding:10px; display: flex; gap:10px;">
+                                <div class="input-field">
+                                    <select name="ancillaries_pis_category" id="ancillaries_pis_category">
+                                        <option disabled selected>Select
+                                            Here</option>
+                                        <option value="Fillers">Fillers
+                                        </option>
+                                        <option value="Sealers">Sealers
+                                        </option>
+                                        <option value="Stainers">Stainers
+                                        </option>
+                                        <option value="Putty">Putty</option>
+                                        <option value="Wall Primer">Wall
+                                            Primer</option>
+                                        <option value="Metal Primer">Metal
+                                            Primer</option>
+                                        <option value="Wood Primer">Wood
+                                            Primer</option>
+                                    </select>
+                                    <label for="pis_category">Select PIS
+                                        Category</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" placeholder="" name="product_name" id="product_name2">
+                                    <label for="product_name">Enter Product
+                                        Name</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" placeholder=" " name="product_code" id="product_code2">
+                                    <label for="product_code">Enter Product
+                                        Code</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="file" class="form-control" name="upload_pis" id="upload_pis2">
+                                    <label for="upload_pis" class="form-label">Upload
+                                        PIS</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="date" placeholder=" " name="upload_date" id="upload_date2"
+                                        value="<%=todayDate%>">
+                                    <label for="upload_date">Upload
+                                        Date</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" placeholder=" " name="upload_by" id="upload_by2" value="">
+                                    <label for="upload_by">Upload By</label>
+                                </div>
+                                <div
+                                    style="background-color: none; display: flex; justify-content: center; width: 100%;">
+                                    <button id="stopWatch" type="submit" class="btn btn-primary w-100 float-center"
+                                        style="background-color: #9053df; margin-right:20px;"
+                                        title="Click to save your records"><img src="assets/images/upload.gif" alt="img"
+                                            style="border-radius:5px; height: 30px;">&nbsp;
+                                        Upload PIS
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Other Category PIS Form -->
+                        <form action="other_category" method="post" id="other_category" enctype="multipart/form-data"
+                            style="display: none; min-height:fit-content; height:fit-content;">
+                            <h4 class="page-title" style="color: #947216; text-align: center;">
+                                Upload Other Category PIS
+                                Here</h4>
+                            <div class="fields" style="padding:10px; display: flex; gap:10px;">
+                                <div class="input-field">
+                                    <select name="pis_category" id="other_pis_category" onchange="toggleSurfaceField()">
+                                        <option disabled selected>Select
+                                            Here</option>
+                                        <option value="SmartCare Products">
+                                            SmartCare Products</option>
+                                        <option value="Wood Finish">Wood
+                                            Finish</option>
+                                        <option value="Metal Finish">Metal
+                                            Finish</option>
+                                        <option value="Loctite / Adhesives">
+                                            Loctite / Adhesives</option>
+                                        <option value="Distempers">
+                                            Distempers</option>
+                                        <option value="Floor & Tiles">Floor
+                                            & Tiles</option>
+                                        <option value="Industrial Paint">
+                                            Industrial Paint</option>
+                                        <option value="Stencils & Books">
+                                            Stencils & Books</option>
+                                        <option value="3 Mangoes Paint">3
+                                            Mangoes Paint</option>
+                                        <option value="Other PIS">Other PIS
+                                        </option>
+                                    </select>
+                                    <label for="pis_category">Select PIS /
+                                        File Category</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" placeholder="" name="product_name" id="product_name3">
+                                    <label for="product_name">Enter Product
+                                        / File Name</label>
+                                </div>
+                                <div class="input-field" id="surface_field" style="display: none;">
+                                    <select name="Surface" id="surface3">
+                                        <option disabled selected>Select
+                                            Here</option>
+                                        <option value="Metal Only">Metal
+                                            Only</option>
+                                        <option value="Wood Only">Wood Only
+                                        </option>
+                                        <option value="Wall Only">Wall Only
+                                        </option>
+                                        <option value="Wood / Wall / Metal">
+                                            Wood / Wall / Metal</option>
+                                    </select>
+                                    <label for="Surface">Select
+                                        Surface</label>
+                                </div>
+                                <div class="input-field" id="product_code_field">
+                                    <input type="text" placeholder=" " name="product_code" id="product_code3">
+                                    <label for="product_code">Enter Product
+                                        Code</label>
+                                </div>
+                                <div class="input-field" id="product_warranty_field3" style="display: none;">
+                                    <input type="text" placeholder=" " name="product_warranty3" id="product_warranty3">
+                                    <label for="product_warranty3">Enter
+                                        Product Warranty</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="file" class="form-control" name="upload_pis" id="upload_pis3">
+                                    <label for="upload_pis" class="form-label">Upload
+                                        PIS</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="date" placeholder=" " name="upload_date" id="upload_date3" value="">
+                                    <label for="upload_date">Upload
+                                        Date</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" placeholder=" " name="upload_by" id="upload_by3" value="">
+                                    <label for="upload_by">Upload By</label>
+                                </div>
+                                <div
+                                    style="background-color: none; display: flex; justify-content: center; width: 100%;">
+                                    <button id="stopWatch" type="submit" class="btn btn-primary w-100 float-center"
+                                        style="background-color: #9053df; margin-right:20px;"
+                                        title="Click to save your records"><img src="assets/images/upload.gif" alt="img"
+                                            style="border-radius:5px; height: 30px;">&nbsp;
+                                        Upload PIS
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- container End -->
+                </div>
+                <div class="container-fluid" style="background-color:none; margin-bottom:20px;">
+                    <!-- end row -->
+                    <div class="row"
+                        style="margin-top: 0px; background-color: none;max-width: fit-content; width: 100%;">
+                        <div class="page-title-box">
+                            <h4 class="page-title"><img src="assets/images/save-file.gif" alt="img"
+                                    style="border-radius:5px; height: 40px;">
+                                Upload Scripts & Other Documents</h4>
+                        </div>
+                    </div>
+                    <div class="container" style="background-color: none; max-height: fit-content; height: 100%;">
+                        <form action="script" style="display: flex; min-height:fit-content; height:fit-content;"
+                            enctype="multipart/form-data" method="post" id="scripts">
+                            <div class="fields"
+                                style="padding:10px; display: flex; gap:10px; flex-wrap: wrap; width: 100%;">
+                                <div class="input-field"
+                                    style="width: 100%; flex-direction: column; margin-bottom: 30px;">
+                                    <input type="text" class="form-control" name="doc_category" id="doc_category"
+                                        placeholder="">
+                                    <label for="doc_category">Enter Script /
+                                        Other Document Name</label>
+                                </div>
+
+                                <!-- Hidden fields initially -->
+                                <div style="display:flex; gap:20px; flex-wrap:wrap; width: 100%;">
+                                    <div class="input-field">
+                                        <input type="file" class="form-control" name="script_upload" id="script_upload">
+                                        <label for="upload_pis" class="form-label">Upload Script
+                                            / Document</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input type="date" name="script_date" id="script_date" value="<%=todayDate%>">
+                                        <label for="script_date">Upload
+                                            Date</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input type="text" name="Script_upload_by" id="Script_upload_by" placeholder=""
+                                            value="">
+                                        <label for="script_upload_by">Upload
+                                            By</label>
+                                    </div>
+                                    <div style="display: flex; justify-content: center; width: 100%;">
+                                        <button id="stopWatch" type="submit" class="btn btn-primary w-100 float-center"
+                                            style="background-color: #9053df; margin-right:20px;">
+                                            <img src="assets/images/upload.gif" alt="img"
+                                                style="border-radius:5px; height: 30px;">&nbsp;
+                                            Upload Document
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- container End -->
+        </div>
+    </div> <!-- content -->
+    <!-- Footer Start -->
+    <footer class="footer" style="background-color:#fff"></footer>
+    <!-- bundle -->
+    <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/include.js"></script>
+    <!-- Typehead -->
+    <script src="assets/js/vendor/handlebars.min.js"></script>
+    <script src="assets/js/vendor/typeahead.bundle.min.js"></script>
+    <!-- Demo -->
+    <script src="assets/js/pages/demo.typehead.js"></script>
+    <!-- Timepicker -->
+    <script src="assets/js/pages/demo.timepicker.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pisType = document.getElementById("pis_type");
+            const intExtForm = document.getElementById("int_ext");
+            const ancillariesForm = document.getElementById("ancillaries");
+            const otherCategoryForm = document.getElementById("other_category");
+
+            function toggleForms() {
+                intExtForm.style.display = "none";
+                ancillariesForm.style.display = "none";
+                otherCategoryForm.style.display = "none";
+
+                if (pisType.value === "Interior & Exterior") {
+                    intExtForm.style.display = "block";
+                } else if (pisType.value === "Ancillaries") {
+                    ancillariesForm.style.display = "block";
+                } else if (pisType.value === "Other Categories") {
+                    otherCategoryForm.style.display = "block";
+                }
+            }
+
+            toggleForms(); // Page load par correct form show karega
+
+            pisType.addEventListener("change", toggleForms);
+        });
+
+        // Int-Ext PIS conditions
+        function toggleFields() {
+            var category = document.getElementById("intext_pis_category").value;
+            var productRangeField = document.getElementById("product_range_field");
+            var productFinishField = document.getElementById("product_finish_field");
+            var productWarrantyField = document.getElementById("product_warranty_field");
+
+            if (category === "Interior Special Effects" || category === "Exterior Special Effects") {
+                productRangeField.style.display = "none";
+                productFinishField.style.display = "none";
+                productWarrantyField.style.display = "none";
+            } else {
+                productRangeField.style.display = "block";
+                productFinishField.style.display = "block";
+                productWarrantyField.style.display = "block";
+            }
+        }
+
+        //Other PIS Category Condition
+        function toggleSurfaceField() {
+            var category = document.getElementById("other_pis_category").value;
+            var surfaceField = document.getElementById("surface_field");
+            var warrantyField = document.getElementById("product_warranty_field3");
+
+            // For surface_field condition (No changes here as per request)
+            if (category === "Metal Finish") {
+                surfaceField.style.display = "block";
+            } else {
+                surfaceField.style.display = "none";
+            }
+            // Show warranty field only for SmartCare Products
+            if (category === "SmartCare Products") {
+                warrantyField.style.display = "block";
+            } else {
+                warrantyField.style.display = "none";
+            }
+        }
+
+
+    </script>
+    <!-- Scripts Upload -->
+
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Add Data</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Coderthemes" name="author">
+
+    <link rel="shortcut icon" href="assets/images/fav.png">
+
+
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+
+</head>
+
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <!-- Begin page -->
+    <div class="wrapper">
+        <!-- Left Sidebar Start -->
+        <!-- Sidebar menu code -->
+        <div data-include="headers.html"></div>
+        <!-- Sidebar menu code end -->
+        <!-- Left Sidebar End -->
+        <!-- Start Page Content here -->
+        <div class="content-page" style="background-color: #e7e5e5;">
+            <div class="content">
+                <!-- Topbar Start -->
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+                        <li class="notification-list" style="margin-top: 15px;">
+                            <a class="nav-link end-bar-toggle" href="notepad.html">
+                                <img src="assets/images/journal.gif" alt="img" class="dripicons-clipboard noti-icon"
+                                    style=" border-radius:5px; height: 40px;">
+                                Add Notes
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false" style="height:1px">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/userlogo.gif" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Username
+                                    </span>
+                                    <span class="account-position">Admin</span>
+
+                                </span>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+
+                                <a href="ChangePassword.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/password.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Change Password</span>
+                                </a>
+
+
+                                <a href="Login-page.html" class="dropdown-item notify-item">
+                                    <img src="assets/images/log-out.gif" alt="img"
+                                        style="border-radius:5px; height: 30px;">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <img src="assets/images/menu.gif" alt="img" style="border-radius:5px; height:40px;">
+                    </button>
+                </div>
+                <!-- end Topbar -->
+                <!-- container Start-->
+                <div class="container-fluid" style="background-color:none; height:600px; margin-bottom:100px;">
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title"><img src="assets/images/to-do-list.gif" alt="img"
+                                        style="border-radius:5px; height: 40px;"> Enter Smartcare Call Back Details
+                                    Here</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    <div class="container" style=" background-color: none; height:600px;">
+                        <form action="#" method="post" style="background:transparent;" id="pcd">
+                            <div class="form first" style="background-color: none;">
+                                <div class="details personal" style="background-color: none;">
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Date</label>
+                                            <input type="date" placeholder="Enter Date" name="date" value="">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Time</label>
+                                            <input type="time" placeholder="Enter Time" name="time" value="">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Customer Name</label>
+                                            <input type="text" placeholder="Enter Customer Name" name="customer_name"
+                                                required>
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Mobile Number</label>
+                                            <input type="text" type="tel" pattern="\d{10}"
+                                                title="Please enter a 10-digit mobile number"
+                                                placeholder="Enter Customer Mobile Number" name="mobile_number" required
+                                                data-toggle="input-mask" data-mask-format="0000000000">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Alternate Number</label>
+                                            <input type="text" type="tel" pattern="\d{10}"
+                                                title="Please enter a 10-digit mobile number"
+                                                placeholder="Enter Customer Alternate Number" name="alternate_number"
+                                                data-toggle="input-mask" data-mask-format="0000000000">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Pincode</label>
+                                            <input type="text" pattern="[0-9]{6}"
+                                                title="Please enter a six-digit pin code"
+                                                placeholder="Enter Customer Pincode" name="pincode" required
+                                                data-toggle="input-mask" data-mask-format="000000">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Email ID</label>
+                                            <input type="mail" placeholder="Enter Email ID" name="email_id">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>City</label>
+                                            <input type="text" placeholder="Enter City" name="city">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Product Name</label>
+                                            <input type="text" placeholder="Enter Product Name" name="product_name"
+                                                required>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Call Type</label>
+                                            <select name="call_type" required>
+                                                <option value="">Select Call Type</option>
+                                                <option value="Product Information">Product Information</option>
+                                                <option value="Product Complaint">Product Complaint</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Advisor Name</label>
+                                            <input type="text" placeholder="Enter Agent Name" value="" name="agent_name"
+                                                required>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Assign To</label>
+                                            <input type="text" placeholder="Assign To" name="assignto">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Attempt</label>
+                                            <input type="text" placeholder="Enter Attempt" name="attempt">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Status / Remarks</label>
+                                            <input type="text" placeholder="Enter Status / Remarks"
+                                                name="statusremarks">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Aspect ID</label>
+                                            <input type="text" placeholder="Enter Aspect ID" name="aspect_id" value=""
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="nextBtn">
+                                    <span class="btnText"><img src="assets/images/shield.gif" alt="img"
+                                            style="border-radius:5px; height: 30px;">&nbsp; Submit</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- container End -->
+                </div>
+            </div> <!-- content -->
+            <!-- Footer Start -->
+            <footer class="footer" style="background-color:#fff"></footer>
+            <!-- end Footer -->
+        </div> <!-- End Page Contant -->
+    </div> <!-- END wrapper -->
+    <!-- bundle -->
+    <script src="assets/js/vendor.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/include.js"></script>
+    <!-- Typehead -->
+    <script src="assets/js/vendor/handlebars.min.js"></script>
+    <script src="assets/js/vendor/typeahead.bundle.min.js"></script>
+    <!-- Demo -->
+    <script src="assets/js/pages/demo.typehead.js"></script>
+    <!-- Timepicker -->
+    <script src="assets/js/pages/demo.timepicker.js"></script>
+</body>
+
+</html>
